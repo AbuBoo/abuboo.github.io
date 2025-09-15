@@ -34,7 +34,6 @@
     .brand .logo{width:36px;height:36px;border-radius:8px;background:radial-gradient(circle at 30% 30%, var(--accent) 0%, #fca311 35%, #111 36%),linear-gradient(135deg, #1a2233, #0b0f14);box-shadow:0 0 0 2px #222, 0 10px 25px rgba(0,0,0,.4)}
     .navlinks a{margin:0 8px;color:var(--muted)}
 
-
     .hero{
       position:relative;overflow:hidden;border-radius:20px;margin:24px auto;min-height:320px;
       background:#0e1420;
@@ -47,10 +46,8 @@
     h1{margin:12px 0 8px;font-size:40px;line-height:1.1}
     .sub{color:var(--muted)}
 
-
     .grid{display:grid;grid-template-columns: 3fr 1.2fr;gap:24px}
     @media (max-width: 980px){.grid{grid-template-columns:1fr}}
-
 
     .postlist{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:20px}
     article.card{
@@ -58,7 +55,7 @@
       border:1px solid #1f2836;border-radius:16px;overflow:hidden;display:flex;flex-direction:column;
       box-shadow:0 12px 30px rgba(0,0,0,.25);
     }
-    .card .thumb{height:170px;background:#111;overflow:hidden}
+    .card .thumb{height:170px;background:#111;overflow:hidden;display:block}
     .card .thumb img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .4s ease}
     .card:hover .thumb img{transform:scale(1.05)}
     .card .pad{padding:16px}
@@ -67,7 +64,6 @@
     .tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
     .tag{font-size:11px;padding:4px 8px;border-radius:999px;border:1px solid #263247;color:#c2cbe0;background:#121a2a}
 
-
     aside .widget{background:linear-gradient(180deg, var(--card), var(--soft));border:1px solid #1f2836;border-radius:16px;padding:16px;margin-bottom:20px}
     aside h3{margin:4px 0 12px}
     .about{display:flex;gap:12px}
@@ -75,7 +71,6 @@
     .about .avatar span{font-weight:800;color:#9aa7bd}
     .list{display:grid;gap:10px}
     .list a{color:#dbe7ff}
-
 
     footer{margin:36px 0 24px;color:var(--muted);text-align:center}
     .btn{display:inline-flex;align-items:center;gap:8px;padding:10px 14px;border-radius:12px;border:1px solid #2a3547;background:#141b29;color:#e5edff;cursor:pointer}
@@ -97,37 +92,37 @@
     </div>
   </header>
 
-
   <div class="container">
     <section class="hero" aria-label="featured">
       <img src="https://cdn2.unrealengine.com/apex-legends-epic-games-store-launch-guide-3-1920x1080-1133d2a7ad66.jpg" alt="Apex Legends squad artwork"/>
       <div class="overlay"></div>
       <div class="content">
         <span class="chip">🔥 Featured</span>
-        <h1>New Season Hype: Our Hands‑On Impressions</h1>
+        <h1>New Season Hype: Our Hands-On Impressions</h1>
         <p class="sub">August 19, 2025 • by WraithMain • 5 min read</p>
         <p class="sub">We dropped into the new map rotation and tested the latest balance changes. Movement feels crisp, ring pacing’s tighter, and the weapon meta got spicy. Here’s what stood out—and what still needs a tweak.</p>
         <div class="search" style="margin-top:12px">
-          <input type="search" placeholder="Search posts… (e.g., R‑301, Olympus, movement)" aria-label="Search posts"/>
+          <input type="search" placeholder="Search posts… (e.g., R-301, Olympus, movement)" aria-label="Search posts"/>
           <button class="btn" aria-label="Search">Search</button>
         </div>
       </div>
     </section>
 
-
     <section class="grid">
       <main>
         <div class="postlist">
-          <!-- Post 1 -->
+          <!-- Post 1 (linked) -->
           <article class="card" id="news">
-            <div class="thumb">
-              <img src="https://static.fanbyte.com/uploads/2021/07/E7T76RRX0AM2BZQ.jpg" alt="Apex Legends gameplay screenshot with characters in combat" />
-            </div>
+            <a class="thumb" href="/posts/wingman.html">
+              <img src="https://static.fanbyte.com/uploads/2021/07/E7T76RRX0AM2BZQ.jpg" alt="Apex combat" />
+            </a>
             <div class="pad">
               <div class="meta"><span>Aug 18, 2025</span><span class="dot"></span><span>Patch Notes (Fan Summary)</span></div>
-              <h2 style="margin:6px 0 8px">Quick Take: Wingman Feels Back—But Not Broken</h2>
+              <h2 style="margin:6px 0 8px">
+                <a href="/posts/wingman.html">Quick Take: Wingman Feels Back—But Not Broken</a>
+              </h2>
               <p>
-                After a night of arenas and pubs, the Wingman’s headshot multiplier changes make it rewarding without the old two‑tap terror. Hip‑fire’s a touch more honest, and we’re seeing a healthier split with R‑301/R‑99 at close‑mid ranges.
+                After a night of arenas and pubs, the Wingman’s headshot multiplier changes make it rewarding without the old two-tap terror. Hip-fire’s a touch more honest, and we’re seeing a healthier split with R-301/R-99 at close-mid ranges.
               </p>
               <div class="tags">
                 <span class="tag">Weapons</span>
@@ -137,15 +132,16 @@
             </div>
           </article>
 
-
-          <!-- Post 2 -->
+          <!-- Post 2 (linked) -->
           <article class="card" id="guides">
-            <div class="thumb">
-              <img src="https://gamingbolt.com/wp-content/uploads/2020/10/Apex-Legends-Season-7.jpg" alt="Apex Legends Olympus skyline" />
-            </div>
+            <a class="thumb" href="/posts/olympus-rotations.html">
+              <img src="https://gamingbolt.com/wp-content/uploads/2020/10/Apex-Legends-Season-7.jpg" alt="Olympus skyline" />
+            </a>
             <div class="pad">
               <div class="meta"><span>Aug 16, 2025</span><span class="dot"></span><span>Guide</span></div>
-              <h2 style="margin:6px 0 8px">Rotations on Olympus: 5 Routes to Avoid Third Parties</h2>
+              <h2 style="margin:6px 0 8px">
+                <a href="/posts/olympus-rotations.html">Rotations on Olympus: 5 Routes to Avoid Third Parties</a>
+              </h2>
               <p>
                 Olympus is gorgeous—and brutal for sprinting in the open. These five rotation lines use ziplines, phase runners, and cover to keep you alive when squads collapse. Callouts include <em>Hydroponics</em>, <em>Gardens</em>, and the sneaky backdoor into <em>Hammond Labs</em>.
               </p>
@@ -157,17 +153,18 @@
             </div>
           </article>
 
-
-          <!-- Post 3 -->
+          <!-- Post 3 (linked) -->
           <article class="card" id="tiers">
-            <div class="thumb">
-              <img src="https://www.gamespot.com/a/uploads/scale_medium/1752/17528202/4018999-apexlegends_20220809132856.jpeg" alt="Apex Legends squad lineup" />
-            </div>
+            <a class="thumb" href="/posts/tier-list.html">
+              <img src="https://www.gamespot.com/a/uploads/scale_medium/1752/17528202/4018999-apexlegends_20220809132856.jpeg" alt="Squad lineup" />
+            </a>
             <div class="pad">
               <div class="meta"><span>Aug 12, 2025</span><span class="dot"></span><span>Tier List</span></div>
-              <h2 style="margin:6px 0 8px">Legend Tier List (Fun‑Focused): Who Clicks in Pubs Right Now</h2>
+              <h2 style="margin:6px 0 8px">
+                <a href="/posts/tier-list.html">Legend Tier List (Fun-Focused): Who Clicks in Pubs Right Now</a>
+              </h2>
               <p>
-                S‑Tier: <strong>Horizon</strong>, <strong>Bloodhound</strong> • A‑Tier: <strong>Wraith</strong>, <strong>Bangalore</strong>, <strong>Conduit</strong> • B‑Tier: <strong>Gibraltar</strong>, <strong>Valkyrie</strong> • C‑Tier: <strong>Rampart</strong> (minigun moments still slap).
+                S-Tier: <strong>Horizon</strong>, <strong>Bloodhound</strong> • A-Tier: <strong>Wraith</strong>, <strong>Bangalore</strong>, <strong>Conduit</strong> • B-Tier: <strong>Gibraltar</strong>, <strong>Valkyrie</strong> • C-Tier: <strong>Rampart</strong> (minigun moments still slap).
               </p>
               <div class="tags">
                 <span class="tag">Legends</span>
@@ -177,17 +174,18 @@
             </div>
           </article>
 
-
-          <!-- Post 4 -->
+          <!-- Post 4 (linked) -->
           <article class="card">
-            <div class="thumb">
-              <img src="https://cdn2.unrealengine.com/apex-legends-epic-games-store-launch-guide-3-1920x1080-1133d2a7ad66.jpg" alt="Apex Legends dramatic cliff battle" />
-            </div>
+            <a class="thumb" href="/posts/audio-notes.html">
+              <img src="https://cdn2.unrealengine.com/apex-legends-epic-games-store-launch-guide-3-1920x1080-1133d2a7ad66.jpg" alt="Cliff battle" />
+            </a>
             <div class="pad">
               <div class="meta"><span>Aug 9, 2025</span><span class="dot"></span><span>Opinion</span></div>
-              <h2 style="margin:6px 0 8px">Audio’s in a Good Place—Here’s What Still Trips Us Up</h2>
+              <h2 style="margin:6px 0 8px">
+                <a href="/posts/audio-notes.html">Audio’s in a Good Place—Here’s What Still Trips Us Up</a>
+              </h2>
               <p>
-                Footstep clarity is improved, but vertical audio around multi‑level buildings remains inconsistent. We tested with a squad running mixed headsets and found stairwell fights easiest to parse; ziplines and phase jumps can still drown callouts.
+                Footstep clarity is improved, but vertical audio around multi-level buildings remains inconsistent. We tested with a squad running mixed headsets and found stairwell fights easiest to parse; ziplines and phase jumps can still drown callouts.
               </p>
               <div class="tags">
                 <span class="tag">QoL</span>
@@ -198,16 +196,14 @@
         </div>
       </main>
 
-
       <aside>
         <div class="widget about">
           <div class="avatar" aria-hidden="true"><span>AL</span></div>
           <div>
             <h3>About This Demo</h3>
-            <p class="sub">A single‑file HTML mock blog about Apex Legends. Images embedded via external URLs. All entries are fictional summaries for layout/testing.</p>
+            <p class="sub">A single-file HTML mock blog about Apex Legends. Images embedded via external URLs. All entries are fictional summaries for layout/testing.</p>
           </div>
         </div>
-
 
         <div class="widget">
           <h3>Popular Topics</h3>
@@ -218,7 +214,6 @@
             <a href="#">Weapon Crafting</a>
           </div>
         </div>
-
 
         <div class="widget">
           <h3>Newsletter</h3>
@@ -231,11 +226,9 @@
       </aside>
     </section>
 
-
     <footer>
       <p>© 2025 Apex Legends Fan Blog by Ahmed Abuboo</p>
     </footer>
   </div>
 </body>
 </html>
-
