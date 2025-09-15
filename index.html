@@ -2,16 +2,240 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Abuboo Photography</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Apex Legends – Fan Blog (Demo)</title>
   <style>
-    body { font-family: sans-serif; text-align: center; padding: 2em; }
-    img { max-width: 100%; height: auto; border-radius: 10px; }
+    :root{
+      --bg:#0b0f14;
+      --card:#121823;
+      --soft:#1a2130;
+      --text:#e8eef6;
+      --muted:#a7b0bd;
+      --accent:#ff4655; /* pop */
+      --accent-2:#00f0ff; /* neon */
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;height:100%;}
+    body{
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji";
+      color:var(--text);
+      background:linear-gradient(180deg,#0b0f14 0%, #0e1420 40%, #0b0f14 100%);
+    }
+    a{color:var(--accent-2);text-decoration:none}
+    a:hover{text-decoration:underline}
+    .container{max-width:1100px;margin:0 auto;padding:24px}
+    header{
+      position:sticky;top:0;z-index:10;
+      background:rgba(11,15,20,.8);backdrop-filter: blur(8px);
+      border-bottom:1px solid #1f2836;
+    }
+    .nav{display:flex;align-items:center;gap:16px;justify-content:space-between;padding:16px 24px}
+    .brand{display:flex;align-items:center;gap:12px;font-weight:800;letter-spacing:.5px}
+    .brand .logo{width:36px;height:36px;border-radius:8px;background:radial-gradient(circle at 30% 30%, var(--accent) 0%, #fca311 35%, #111 36%),linear-gradient(135deg, #1a2233, #0b0f14);box-shadow:0 0 0 2px #222, 0 10px 25px rgba(0,0,0,.4)}
+    .navlinks a{margin:0 8px;color:var(--muted)}
+
+
+    .hero{
+      position:relative;overflow:hidden;border-radius:20px;margin:24px auto;min-height:320px;
+      background:#0e1420;
+      box-shadow:0 10px 40px rgba(0,0,0,.45), inset 0 0 0 1px #1b2534;
+    }
+    .hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:contrast(1.05) saturate(1.1) brightness(.8)}
+    .hero .overlay{position:absolute;inset:0;background:linear-gradient(120deg, rgba(11,15,20,.9) 0%, rgba(11,15,20,.3) 55%, rgba(11,15,20,.95) 100%)}
+    .hero .content{position:relative;z-index:1;padding:36px;max-width:720px}
+    .chip{display:inline-flex;align-items:center;gap:8px;padding:6px 10px;border-radius:999px;background:rgba(255,70,85,.15);border:1px solid rgba(255,70,85,.35);font-size:12px;color:#ffd9dd}
+    h1{margin:12px 0 8px;font-size:40px;line-height:1.1}
+    .sub{color:var(--muted)}
+
+
+    .grid{display:grid;grid-template-columns: 3fr 1.2fr;gap:24px}
+    @media (max-width: 980px){.grid{grid-template-columns:1fr}}
+
+
+    .postlist{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:20px}
+    article.card{
+      background:linear-gradient(180deg, var(--card), var(--soft));
+      border:1px solid #1f2836;border-radius:16px;overflow:hidden;display:flex;flex-direction:column;
+      box-shadow:0 12px 30px rgba(0,0,0,.25);
+    }
+    .card .thumb{height:170px;background:#111;overflow:hidden}
+    .card .thumb img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .4s ease}
+    .card:hover .thumb img{transform:scale(1.05)}
+    .card .pad{padding:16px}
+    .meta{display:flex;gap:10px;align-items:center;color:var(--muted);font-size:12px;margin-bottom:8px}
+    .meta .dot{width:4px;height:4px;background:#3c4a61;border-radius:50%}
+    .tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+    .tag{font-size:11px;padding:4px 8px;border-radius:999px;border:1px solid #263247;color:#c2cbe0;background:#121a2a}
+
+
+    aside .widget{background:linear-gradient(180deg, var(--card), var(--soft));border:1px solid #1f2836;border-radius:16px;padding:16px;margin-bottom:20px}
+    aside h3{margin:4px 0 12px}
+    .about{display:flex;gap:12px}
+    .about .avatar{width:48px;height:48px;border-radius:12px;background:linear-gradient(135deg,#222,#000);display:grid;place-items:center;border:1px solid #2b3648}
+    .about .avatar span{font-weight:800;color:#9aa7bd}
+    .list{display:grid;gap:10px}
+    .list a{color:#dbe7ff}
+
+
+    footer{margin:36px 0 24px;color:var(--muted);text-align:center}
+    .btn{display:inline-flex;align-items:center;gap:8px;padding:10px 14px;border-radius:12px;border:1px solid #2a3547;background:#141b29;color:#e5edff;cursor:pointer}
+    .btn:hover{transform:translateY(-1px)}
+    .search{display:flex;gap:8px}
+    input[type="search"]{flex:1;min-width:0;padding:10px 12px;border-radius:12px;border:1px solid #2a3547;background:#0f1522;color:#e5edff}
   </style>
 </head>
 <body>
-  <h1>Welcome to Abuboo Photography</h1>
-  <p>Capturing the moments that matter.</p>
-  <img src="https://via.placeholder.com/800x400?text=Photography+Example" alt="Sample photo">
+  <header>
+    <div class="nav container">
+      <div class="brand"><div class="logo" aria-hidden="true"></div> Apex Legends Fan Blog</div>
+      <nav class="navlinks">
+        <a href="#">Home</a>
+        <a href="#news">News</a>
+        <a href="#guides">Guides</a>
+        <a href="#tiers">Tier Lists</a>
+      </nav>
+    </div>
+  </header>
+
+
+  <div class="container">
+    <section class="hero" aria-label="featured">
+      <img src="https://cdn2.unrealengine.com/apex-legends-epic-games-store-launch-guide-3-1920x1080-1133d2a7ad66.jpg" alt="Apex Legends squad artwork"/>
+      <div class="overlay"></div>
+      <div class="content">
+        <span class="chip">🔥 Featured</span>
+        <h1>New Season Hype: Our Hands‑On Impressions</h1>
+        <p class="sub">August 19, 2025 • by WraithMain • 5 min read</p>
+        <p class="sub">We dropped into the new map rotation and tested the latest balance changes. Movement feels crisp, ring pacing’s tighter, and the weapon meta got spicy. Here’s what stood out—and what still needs a tweak.</p>
+        <div class="search" style="margin-top:12px">
+          <input type="search" placeholder="Search posts… (e.g., R‑301, Olympus, movement)" aria-label="Search posts"/>
+          <button class="btn" aria-label="Search">Search</button>
+        </div>
+      </div>
+    </section>
+
+
+    <section class="grid">
+      <main>
+        <div class="postlist">
+          <!-- Post 1 -->
+          <article class="card" id="news">
+            <div class="thumb">
+              <img src="https://static.fanbyte.com/uploads/2021/07/E7T76RRX0AM2BZQ.jpg" alt="Apex Legends gameplay screenshot with characters in combat" />
+            </div>
+            <div class="pad">
+              <div class="meta"><span>Aug 18, 2025</span><span class="dot"></span><span>Patch Notes (Fan Summary)</span></div>
+              <h2 style="margin:6px 0 8px">Quick Take: Wingman Feels Back—But Not Broken</h2>
+              <p>
+                After a night of arenas and pubs, the Wingman’s headshot multiplier changes make it rewarding without the old two‑tap terror. Hip‑fire’s a touch more honest, and we’re seeing a healthier split with R‑301/R‑99 at close‑mid ranges.
+              </p>
+              <div class="tags">
+                <span class="tag">Weapons</span>
+                <span class="tag">Balance</span>
+                <span class="tag">Patch 17.x</span>
+              </div>
+            </div>
+          </article>
+
+
+          <!-- Post 2 -->
+          <article class="card" id="guides">
+            <div class="thumb">
+              <img src="https://gamingbolt.com/wp-content/uploads/2020/10/Apex-Legends-Season-7.jpg" alt="Apex Legends Olympus skyline" />
+            </div>
+            <div class="pad">
+              <div class="meta"><span>Aug 16, 2025</span><span class="dot"></span><span>Guide</span></div>
+              <h2 style="margin:6px 0 8px">Rotations on Olympus: 5 Routes to Avoid Third Parties</h2>
+              <p>
+                Olympus is gorgeous—and brutal for sprinting in the open. These five rotation lines use ziplines, phase runners, and cover to keep you alive when squads collapse. Callouts include <em>Hydroponics</em>, <em>Gardens</em>, and the sneaky backdoor into <em>Hammond Labs</em>.
+              </p>
+              <div class="tags">
+                <span class="tag">Map Tactics</span>
+                <span class="tag">Rotations</span>
+                <span class="tag">Olympus</span>
+              </div>
+            </div>
+          </article>
+
+
+          <!-- Post 3 -->
+          <article class="card" id="tiers">
+            <div class="thumb">
+              <img src="https://www.gamespot.com/a/uploads/scale_medium/1752/17528202/4018999-apexlegends_20220809132856.jpeg" alt="Apex Legends squad lineup" />
+            </div>
+            <div class="pad">
+              <div class="meta"><span>Aug 12, 2025</span><span class="dot"></span><span>Tier List</span></div>
+              <h2 style="margin:6px 0 8px">Legend Tier List (Fun‑Focused): Who Clicks in Pubs Right Now</h2>
+              <p>
+                S‑Tier: <strong>Horizon</strong>, <strong>Bloodhound</strong> • A‑Tier: <strong>Wraith</strong>, <strong>Bangalore</strong>, <strong>Conduit</strong> • B‑Tier: <strong>Gibraltar</strong>, <strong>Valkyrie</strong> • C‑Tier: <strong>Rampart</strong> (minigun moments still slap).
+              </p>
+              <div class="tags">
+                <span class="tag">Legends</span>
+                <span class="tag">Tier List</span>
+                <span class="tag">Casual</span>
+              </div>
+            </div>
+          </article>
+
+
+          <!-- Post 4 -->
+          <article class="card">
+            <div class="thumb">
+              <img src="https://cdn2.unrealengine.com/apex-legends-epic-games-store-launch-guide-3-1920x1080-1133d2a7ad66.jpg" alt="Apex Legends dramatic cliff battle" />
+            </div>
+            <div class="pad">
+              <div class="meta"><span>Aug 9, 2025</span><span class="dot"></span><span>Opinion</span></div>
+              <h2 style="margin:6px 0 8px">Audio’s in a Good Place—Here’s What Still Trips Us Up</h2>
+              <p>
+                Footstep clarity is improved, but vertical audio around multi‑level buildings remains inconsistent. We tested with a squad running mixed headsets and found stairwell fights easiest to parse; ziplines and phase jumps can still drown callouts.
+              </p>
+              <div class="tags">
+                <span class="tag">QoL</span>
+                <span class="tag">Audio</span>
+              </div>
+            </div>
+          </article>
+        </div>
+      </main>
+
+
+      <aside>
+        <div class="widget about">
+          <div class="avatar" aria-hidden="true"><span>AL</span></div>
+          <div>
+            <h3>About This Demo</h3>
+            <p class="sub">A single‑file HTML mock blog about Apex Legends. Images embedded via external URLs. All entries are fictional summaries for layout/testing.</p>
+          </div>
+        </div>
+
+
+        <div class="widget">
+          <h3>Popular Topics</h3>
+          <div class="list">
+            <a href="#">Movement Tech</a>
+            <a href="#">Best Early Drops</a>
+            <a href="#">Audio Tips</a>
+            <a href="#">Weapon Crafting</a>
+          </div>
+        </div>
+
+
+        <div class="widget">
+          <h3>Newsletter</h3>
+          <p class="sub">Get monthly patch roundups and map tips.</p>
+          <form onsubmit="event.preventDefault(); alert('Thanks for subscribing, legend!');">
+            <input type="email" placeholder="your@email.com" aria-label="Email" style="width:100%;padding:10px 12px;border-radius:12px;border:1px solid #2a3547;background:#0f1522;color:#e5edff;margin-bottom:8px" required />
+            <button class="btn" type="submit">Subscribe</button>
+          </form>
+        </div>
+      </aside>
+    </section>
+
+
+    <footer>
+      <p>© 2025 Apex Legends Fan Blog by Ahmed Abuboo</p>
+    </footer>
+  </div>
 </body>
 </html>
+
