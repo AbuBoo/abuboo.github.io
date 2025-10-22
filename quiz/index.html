@@ -5,65 +5,107 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Which Housewives Franchise Are You?</title>
   <style>
-    :root {
-      --bg: #ffffff;
-      --text: #0f172a;
-      --muted: #6b7280;
-      --card: #ffffff;
-      --border: #e5e7eb;
-      --shadow: 0 1px 2px rgba(0,0,0,.06), 0 4px 12px rgba(0,0,0,.05);
-      --accent: #111827;
+    :root{
+      --bg: #0b1020;          /* Deep app background */
+      --panel: #0f172a;       /* Card background */
+      --text: #e5e7eb;        /* Primary text */
+      --muted: #94a3b8;       /* Secondary text */
+      --border: rgba(148,163,184,.2);
+      --ring: rgba(59,130,246,.35);
+      --shadow: 0 10px 30px rgba(2,6,23,.35), 0 2px 10px rgba(2,6,23,.4);
+      --accent: #a78bfa;
+      --chip: rgba(148,163,184,.12);
+      --track: rgba(148,163,184,.25);
+      --fill: linear-gradient(90deg,#60a5fa,#a78bfa,#f472b6);
     }
-    * { box-sizing: border-box; }
-    body {
-      margin: 0;
-      font: 16px/1.5 system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
-      color: var(--text);
-      background: var(--bg);
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      color:var(--text);
+      font:16px/1.55 system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,"Apple Color Emoji","Segoe UI Emoji";
+      background:
+        radial-gradient(1200px 600px at 10% -10%, rgba(96,165,250,.10), transparent 60%),
+        radial-gradient(1200px 600px at 110% 0%, rgba(167,139,250,.12), transparent 60%),
+        var(--bg);
     }
-    .wrap { max-width: 960px; margin: 0 auto; padding: 28px 20px 56px; }
-    h1 { font-weight: 800; letter-spacing: -0.02em; margin: 0 0 6px; }
-    h2 { margin: 0 0 10px; }
-    .muted { color: var(--muted); }
-    .pill { display:inline-block; border:1px solid var(--border); border-radius:999px; padding:6px 10px; font-size:12px; margin:4px 6px 0 0; }
-    .card { background: var(--card); border:1px solid var(--border); border-radius:16px; box-shadow: var(--shadow); padding:18px; }
-    .grid { display:grid; gap:18px; }
-    .q { display:grid; gap:10px; }
-    .row { display:flex; align-items:center; gap:12px; }
-    .row label { width:140px; font-weight:600; }
-    input[type=range] { width:100%; }
-    .num { width:44px; text-align:center; border:1px solid var(--border); border-radius:10px; padding:6px 8px; background:#fff; }
-    .btn {
-      cursor:pointer; border:1px solid var(--border); background:#111827; color:#fff; padding:10px 14px;
-      border-radius:10px; font-weight:600;
+    .wrap{max-width:980px;margin:0 auto;padding:28px 20px 56px}
+    header{
+      display:flex; align-items:center; gap:18px; padding:14px 16px;
+      background:linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,0));
+      border:1px solid var(--border);
+      border-radius:18px; box-shadow:var(--shadow);
+      backdrop-filter:saturate(120%) blur(6px);
     }
-    .btn.secondary { background:#fff; color:#111827; }
-    .bars { display:grid; gap:12px; grid-template-columns: 1fr; }
-    @media (min-width: 800px){ .bars { grid-template-columns: 1fr 1fr; } }
-    .bar { margin-bottom:6px; }
-    .barlabel { display:flex; justify-content:space-between; font-size:14px; margin-bottom:4px; }
-    .track { height:10px; background:#e5e7eb; border-radius:999px; overflow:hidden; }
-    .fill { height:10px; border-radius:999px; }
-    .topline { font-size:20px; font-weight:800; margin-top:4px; }
-    .copylink { font-size:14px; text-decoration:underline; cursor:pointer; }
-    .small { font-size:12px; }
-    .table { width:100%; border-collapse: collapse; font-size:14px; }
-    .table th, .table td { border-top:1px solid var(--border); padding:8px 6px; text-align:left; }
-    .badge { padding:2px 8px; border-radius:999px; border:1px solid var(--border); font-size:12px; }
+    header img{width:66px;height:66px;object-fit:contain; border-radius:14px; background:rgba(255,255,255,.06); padding:8px}
+    h1{font-weight:800;letter-spacing:-.02em; margin:0}
+    .muted{color:var(--muted)}
+
+    .grid{display:grid;gap:18px; margin-top:18px}
+    .card{
+      background:var(--panel);
+      border:1px solid var(--border);
+      border-radius:18px;
+      box-shadow:var(--shadow);
+      padding:20px;
+    }
+    .q{display:grid;gap:12px}
+    .section-title{font-size:18px; font-weight:800; margin:0 0 4px}
+    .chip{display:inline-flex; align-items:center; gap:8px; padding:6px 10px; border:1px solid var(--border); background:var(--chip); border-radius:999px; font-size:12px}
+
+    .row{display:flex; align-items:center; gap:14px}
+    .row label{width:160px; font-weight:700}
+    input[type=range]{width:100%; appearance:none; height:10px; border-radius:999px; background:var(--track); outline:none}
+    input[type=range]::-webkit-slider-thumb{
+      -webkit-appearance:none; width:22px; height:22px; border-radius:50%;
+      background:#fff; border:3px solid transparent; box-shadow:0 0 0 3px var(--ring);
+      cursor:pointer
+    }
+    .num{
+      width:56px; text-align:center; border:1px solid var(--border);
+      border-radius:12px; padding:8px 10px; background:rgba(255,255,255,.04); color:var(--text)
+    }
+
+    .btn{
+      cursor:pointer; border:1px solid var(--border); background:#111827;
+      color:#fff; padding:12px 14px; border-radius:12px; font-weight:700;
+      transition:.15s transform ease, .15s opacity ease
+    }
+    .btn.secondary{ background:transparent; color:var(--text) }
+    .btn:hover{ transform:translateY(-1px) }
+
+    .bars{display:grid; gap:12px; grid-template-columns:1fr}
+    @media (min-width:860px){ .bars{ grid-template-columns:1fr 1fr } }
+    .bar{}
+    .barlabel{display:flex; justify-content:space-between; font-size:14px; margin-bottom:6px}
+    .track{height:10px; background:var(--track); border-radius:999px; overflow:hidden}
+    .fill{height:10px; border-radius:999px; background:var(--fill); background-size:200% 100%; animation:shine 3s linear infinite}
+    @keyframes shine{0%{background-position:0% 50%}100%{background-position:200% 50%}}
+
+    .topline{font-size:20px; font-weight:800; margin-top:6px}
+    .small{font-size:12px}
+    .table{width:100%; border-collapse:collapse; font-size:14px}
+    .table th,.table td{border-top:1px solid var(--border); padding:10px 8px; text-align:left}
+    .table th:last-child,.table td:last-child{text-align:right}
+
+    footer{color:var(--muted)}
   </style>
 </head>
 <body>
   <div class="wrap">
     <header>
-      <h1>Which Housewives Franchise Are You?</h1>
-      <div class="muted">Rate what you care about (1–10). We’ll compute your best-fit using your formula.</div>
-      <div id="franchisePills" style="margin-top:8px;"></div>
+      <!-- Put logo.png next to this HTML file -->
+      <img src="logo.png" alt="RHU crest logo" />
+      <div>
+        <h1>Which Housewives Franchise Are You?</h1>
+        <!-- (Removed the subtitle + franchise pills per request) -->
+      </div>
     </header>
 
-    <!-- INPUTS -->
-    <section class="grid" style="margin-top:18px">
+    <section class="grid">
+      <!-- INPUTS -->
       <div class="card q">
-        <h2>1) Your Priorities</h2>
+        <div class="section-title">Rankings</div>
         <div class="row"><label for="comedy">Comedy</label>
           <input id="comedy" type="range" min="1" max="10" value="5" />
           <input id="comedyNum" class="num" type="number" min="1" max="10" value="5" />
@@ -89,30 +131,31 @@
           <input id="lifestyleNum" class="num" type="number" min="1" max="10" value="5" />
         </div>
 
-        <div style="display:flex; gap:10px; margin-top:6px;">
+        <div style="display:flex; gap:10px; margin-top:8px;">
           <button id="resetBtn" class="btn secondary">Reset to 5s</button>
-          <button id="shareBtn" class="btn secondary">Copy Share Link</button>
+          <button id="shareBtn" class="btn">Copy Share Link</button>
         </div>
-        <div class="small muted">Tip: the share link encodes your slider values so others can see your scores.</div>
+        <div class="small muted">The share link encodes your slider values so others can see your scores.</div>
       </div>
 
       <!-- RESULTS -->
       <div class="card">
         <div style="display:flex; justify-content:space-between; align-items:center;">
-          <h2>Results</h2>
-          <span class="small muted">Scores are weighted 1–10 (higher = better fit)</span>
+          <div class="section-title">Results</div>
+          <span class="chip">Scores are weighted 1–10</span>
         </div>
+
         <div id="headline" class="topline">Adjust the sliders to see your match.</div>
         <div id="subcopy" class="muted" style="margin:6px 0 12px 0;"></div>
 
         <div id="bars" class="bars" style="margin-top:8px"></div>
 
-        <h3 style="margin-top:16px">Top 3</h3>
+        <h3 style="margin-top:16px;margin-bottom:6px">Top 3</h3>
         <table class="table" id="top3"></table>
       </div>
     </section>
 
-    <footer class="muted small" style="margin-top:18px">
+    <footer class="small" style="margin-top:18px">
       Admin note: weights mirror your RH franchises table. Want 0–10 instead of 1–10? See “NORMALIZE_ZERO_TO_TEN” in the code.
     </footer>
   </div>
@@ -158,9 +201,7 @@
     const sliders = Object.fromEntries(ids.map(id => [id, document.getElementById(id)]));
     const nums    = Object.fromEntries(ids.map(id => [id, document.getElementById(id+"Num")]));
 
-    // Franchise pills
-    const pills = FRANCHISES.map(f => `<span class="pill">${f.label}</span>`).join("");
-    document.getElementById("franchisePills").innerHTML = pills;
+    // (Removed franchise pills + subtitle)
 
     // Bind range <-> number sync
     for (const id of ids) {
@@ -215,7 +256,6 @@
           values.xfactor   * w.xfactor +
           values.fashion   * w.fashion +
           values.lifestyle * w.lifestyle;
-        // round to 2 decimals for display
         rows.push({ key:f.key, label:f.label, color:f.color, blurb:f.blurb, score: Math.round(s*100)/100 });
       }
       rows.sort((a,b)=> b.score - a.score);
@@ -230,7 +270,7 @@
       if (rows.length) {
         const top = rows[0];
         document.getElementById("headline").innerHTML =
-          `Top match: <span class="badge" style="border-color:${top.color}; color:${top.color}">${top.label}</span> — ${top.score}`;
+          `Top match: <span class="chip" style="border-color:${top.color}; color:${top.color}">${top.label}</span> — ${top.score}`;
         document.getElementById("subcopy").textContent = top.blurb || "";
       }
 
@@ -245,7 +285,7 @@
               <span>${r.score}</span>
             </div>
             <div class="track">
-              <div class="fill" style="width:${pct}%; background:${r.color}"></div>
+              <div class="fill" style="width:${pct}%;"></div>
             </div>
           </div>
         `;
@@ -257,11 +297,11 @@
         <tr>
           <td style="width:32px">${i+1}</td>
           <td>${r.label}</td>
-          <td style="text-align:right">${r.score}</td>
+          <td>${r.score}</td>
         </tr>
       `).join("");
       document.getElementById("top3").innerHTML =
-        `<tr><th>#</th><th>Franchise</th><th style="text-align:right">Score</th></tr>${top3}`;
+        `<tr><th>#</th><th>Franchise</th><th>Score</th></tr>${top3}`;
 
       // update URL silently
       const url = new URL(window.location);
@@ -269,12 +309,8 @@
       window.history.replaceState({}, "", url);
     }
 
-    function encode(obj){
-      return btoa(encodeURIComponent(JSON.stringify(obj)));
-    }
-    function decode(str){
-      try { return JSON.parse(decodeURIComponent(atob(str))); } catch(e){ return null; }
-    }
+    function encode(obj){ return btoa(encodeURIComponent(JSON.stringify(obj))); }
+    function decode(str){ try { return JSON.parse(decodeURIComponent(atob(str))); } catch(e){ return null; } }
     function buildShareLink(){
       const url = new URL(window.location.href);
       url.searchParams.set("q", encode(getValues()));
