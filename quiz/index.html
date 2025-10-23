@@ -3,86 +3,89 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Which Housewives Franchise Are You?</title>
+  <title>Real Housewives University — Franchise compatibility index</title>
   <style>
     :root{
-      --bg: #0b1020;          /* Deep app background */
-      --panel: #0f172a;       /* Card background */
-      --text: #e5e7eb;        /* Primary text */
-      --muted: #94a3b8;       /* Secondary text */
-      --border: rgba(148,163,184,.2);
-      --ring: rgba(59,130,246,.35);
-      --shadow: 0 10px 30px rgba(2,6,23,.35), 0 2px 10px rgba(2,6,23,.4);
-      --accent: #a78bfa;
-      --chip: rgba(148,163,184,.12);
-      --track: rgba(148,163,184,.25);
-      --fill: linear-gradient(90deg,#60a5fa,#a78bfa,#f472b6);
+      /* THEME — light pink UI */
+      --bg: #ffe9f1;              /* page backdrop */
+      --bg-accent: #ffd3e3;       /* soft vignette tint */
+      --panel: #ffffff;           /* card background */
+      --text: #1f0a15;            /* primary text (deep plum) */
+      --muted: #7a4d61;           /* secondary text */
+      --border: rgba(122,77,97,.18);
+      --ring: rgba(243,114,166,.35);
+      --shadow: 0 10px 28px rgba(122,77,97,.15), 0 1px 6px rgba(122,77,97,.1);
+
+      /* Pink-only gradient for bars & emphasis */
+      --track: rgba(122,77,97,.20);
+      --fill: linear-gradient(90deg,#ffd1df,#ff99bd,#f472b6,#db2777);
     }
+
     *{box-sizing:border-box}
     html,body{height:100%}
     body{
-      margin:0;
-      color:var(--text);
+      margin:0; color:var(--text);
       font:16px/1.55 system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,"Apple Color Emoji","Segoe UI Emoji";
       background:
-        radial-gradient(1200px 600px at 10% -10%, rgba(96,165,250,.10), transparent 60%),
-        radial-gradient(1200px 600px at 110% 0%, rgba(167,139,250,.12), transparent 60%),
+        radial-gradient(1400px 700px at 0% -10%, var(--bg-accent), transparent 60%),
+        radial-gradient(1300px 700px at 120% 0%, var(--bg-accent), transparent 60%),
         var(--bg);
     }
+
     .wrap{max-width:980px;margin:0 auto;padding:28px 20px 56px}
+
+    /* Header */
     header{
-      display:flex; align-items:center; gap:18px; padding:14px 16px;
-      background:linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,0));
+      display:flex; align-items:center; gap:18px; padding:16px 18px;
+      background:rgba(255,255,255,.65);
       border:1px solid var(--border);
-      border-radius:18px; box-shadow:var(--shadow);
+      border-radius:20px; box-shadow:var(--shadow);
       backdrop-filter:saturate(120%) blur(6px);
     }
-    header img{width:66px;height:66px;object-fit:contain; border-radius:14px; background:rgba(255,255,255,.06); padding:8px}
-    h1{font-weight:800;letter-spacing:-.02em; margin:0}
-    .muted{color:var(--muted)}
-
-    .grid{display:grid;gap:18px; margin-top:18px}
-    .card{
-      background:var(--panel);
-      border:1px solid var(--border);
-      border-radius:18px;
-      box-shadow:var(--shadow);
-      padding:20px;
+    header img{
+      width:96px; height:96px; object-fit:contain;
+      border-radius:16px; background:rgba(255,255,255,.6); padding:10px;
+      box-shadow:inset 0 0 0 1px var(--border);
     }
-    .q{display:grid;gap:12px}
-    .section-title{font-size:18px; font-weight:800; margin:0 0 4px}
-    .chip{display:inline-flex; align-items:center; gap:8px; padding:6px 10px; border:1px solid var(--border); background:var(--chip); border-radius:999px; font-size:12px}
+    h1{font-weight:900; letter-spacing:-.02em; margin:2px 0 2px; font-size:28px}
+    .subhead{margin:0; font-size:14px; color:var(--muted); font-weight:700; text-transform:uppercase; letter-spacing:.08em}
 
+    /* Cards & layout */
+    .grid{display:grid;gap:18px; margin-top:18px}
+    .card{background:var(--panel); border:1px solid var(--border); border-radius:18px; box-shadow:var(--shadow); padding:20px}
+    .q{display:grid;gap:12px}
+    .section-title{font-size:18px; font-weight:900; margin:0 0 4px}
+
+    /* Inputs */
     .row{display:flex; align-items:center; gap:14px}
-    .row label{width:160px; font-weight:700}
+    .row label{width:160px; font-weight:800}
     input[type=range]{width:100%; appearance:none; height:10px; border-radius:999px; background:var(--track); outline:none}
     input[type=range]::-webkit-slider-thumb{
       -webkit-appearance:none; width:22px; height:22px; border-radius:50%;
-      background:#fff; border:3px solid transparent; box-shadow:0 0 0 3px var(--ring);
-      cursor:pointer
+      background:#fff; border:3px solid transparent; box-shadow:0 0 0 3px var(--ring); cursor:pointer
     }
     .num{
       width:56px; text-align:center; border:1px solid var(--border);
-      border-radius:12px; padding:8px 10px; background:rgba(255,255,255,.04); color:var(--text)
+      border-radius:12px; padding:8px 10px; background:rgba(255,255,255,.65); color:var(--text)
     }
-
     .btn{
-      cursor:pointer; border:1px solid var(--border); background:#111827;
-      color:#fff; padding:12px 14px; border-radius:12px; font-weight:700;
+      cursor:pointer; border:1px solid var(--border); background:#d94690;
+      color:#fff; padding:12px 14px; border-radius:12px; font-weight:800;
       transition:.15s transform ease, .15s opacity ease
     }
     .btn.secondary{ background:transparent; color:var(--text) }
     .btn:hover{ transform:translateY(-1px) }
 
+    /* Results bars */
     .bars{display:grid; gap:12px; grid-template-columns:1fr}
     @media (min-width:860px){ .bars{ grid-template-columns:1fr 1fr } }
-    .bar{}
     .barlabel{display:flex; justify-content:space-between; font-size:14px; margin-bottom:6px}
     .track{height:10px; background:var(--track); border-radius:999px; overflow:hidden}
     .fill{height:10px; border-radius:999px; background:var(--fill); background-size:200% 100%; animation:shine 3s linear infinite}
     @keyframes shine{0%{background-position:0% 50%}100%{background-position:200% 50%}}
 
-    .topline{font-size:20px; font-weight:800; margin-top:6px}
+    .chip{display:inline-flex; align-items:center; gap:8px; padding:6px 10px; border:1px solid var(--border); background:rgba(255,255,255,.6); border-radius:999px; font-size:12px}
+    .topline{font-size:20px; font-weight:900; margin-top:6px}
     .small{font-size:12px}
     .table{width:100%; border-collapse:collapse; font-size:14px}
     .table th,.table td{border-top:1px solid var(--border); padding:10px 8px; text-align:left}
@@ -94,11 +97,11 @@
 <body>
   <div class="wrap">
     <header>
-      <!-- Put logo.png next to this HTML file -->
+      <!-- Keep logo.png next to this file -->
       <img src="logo.png" alt="RHU crest logo" />
       <div>
-        <h1>Which Housewives Franchise Are You?</h1>
-        <!-- (Removed the subtitle + franchise pills per request) -->
+        <h1>Real Housewives University</h1>
+        <p class="subhead">Franchise compatibility index</p>
       </div>
     </header>
 
@@ -135,7 +138,7 @@
           <button id="resetBtn" class="btn secondary">Reset to 5s</button>
           <button id="shareBtn" class="btn">Copy Share Link</button>
         </div>
-        <div class="small muted">The share link encodes your slider values so others can see your scores.</div>
+        <div class="small" style="color:var(--muted)">The share link encodes your slider values so others can see your scores.</div>
       </div>
 
       <!-- RESULTS -->
@@ -146,7 +149,7 @@
         </div>
 
         <div id="headline" class="topline">Adjust the sliders to see your match.</div>
-        <div id="subcopy" class="muted" style="margin:6px 0 12px 0;"></div>
+        <div id="subcopy" class="small" style="color:var(--muted); margin:6px 0 12px 0;"></div>
 
         <div id="bars" class="bars" style="margin-top:8px"></div>
 
@@ -193,15 +196,12 @@
       oc:      { comedy:.15, chemistry:.20, drama:.15, xfactor:.15, fashion:.15, lifestyle:.20 },
     };
 
-    // If you truly want outputs in 0–10, set this to true to map the 1–10 sliders to 0–10 internally.
     const NORMALIZE_ZERO_TO_TEN = false;
 
     // ======= UI BOOT =======
     const ids = ["comedy","chemistry","drama","xfactor","fashion","lifestyle"];
     const sliders = Object.fromEntries(ids.map(id => [id, document.getElementById(id)]));
     const nums    = Object.fromEntries(ids.map(id => [id, document.getElementById(id+"Num")]));
-
-    // (Removed franchise pills + subtitle)
 
     // Bind range <-> number sync
     for (const id of ids) {
@@ -238,14 +238,11 @@
     function getValues() {
       const vals = Object.fromEntries(ids.map(id => [id, Number(sliders[id].value)]));
       if (!NORMALIZE_ZERO_TO_TEN) return vals;
-
-      // map 1..10 → 0..10
       for (const k of Object.keys(vals)) vals[k] = Math.round(((vals[k]-1)/9)*10*10)/10;
       return vals;
     }
 
     function score(values) {
-      // returns array of {key,label,color,score}
       const rows = [];
       for (const f of FRANCHISES) {
         const w = W[f.key];
@@ -270,11 +267,11 @@
       if (rows.length) {
         const top = rows[0];
         document.getElementById("headline").innerHTML =
-          `Top match: <span class="chip" style="border-color:${top.color}; color:${top.color}">${top.label}</span> — ${top.score}`;
+          `Top match: <span class="chip" style="border-color:#f472b6; color:#b91c5f">${top.label}</span> — ${top.score}`;
         document.getElementById("subcopy").textContent = top.blurb || "";
       }
 
-      // Bars
+      // Bars (pink gradient only)
       const maxScore = Math.max(...rows.map(r=>r.score)) || 10;
       const bars = rows.map(r => {
         const pct = Math.round((r.score / maxScore) * 100);
