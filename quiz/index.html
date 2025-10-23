@@ -7,11 +7,11 @@
   <style>
     :root{
       /* THEME — light pink UI */
-      --bg: #ffe9f1;              /* page backdrop */
-      --bg-accent: #ffd3e3;       /* soft vignette tint */
-      --panel: #ffffff;           /* card background */
-      --text: #1f0a15;            /* primary text (deep plum) */
-      --muted: #7a4d61;           /* secondary text */
+      --bg: #ffe9f1;
+      --bg-accent: #ffd3e3;
+      --panel: #ffffff;
+      --text: #1f0a15;
+      --muted: #7a4d61;
       --border: rgba(122,77,97,.18);
       --ring: rgba(243,114,166,.35);
       --shadow: 0 10px 28px rgba(122,77,97,.15), 0 1px 6px rgba(122,77,97,.1);
@@ -31,7 +31,6 @@
         radial-gradient(1300px 700px at 120% 0%, var(--bg-accent), transparent 60%),
         var(--bg);
     }
-
     .wrap{max-width:980px;margin:0 auto;padding:28px 20px 56px}
 
     /* Header */
@@ -68,13 +67,16 @@
       width:56px; text-align:center; border:1px solid var(--border);
       border-radius:12px; padding:8px 10px; background:rgba(255,255,255,.65); color:var(--text)
     }
+
     .btn{
       cursor:pointer; border:1px solid var(--border); background:#d94690;
       color:#fff; padding:12px 14px; border-radius:12px; font-weight:800;
       transition:.15s transform ease, .15s opacity ease
     }
     .btn.secondary{ background:transparent; color:var(--text) }
+    .btn.ghost{ background:rgba(255,255,255,.6); color:var(--text) }
     .btn:hover{ transform:translateY(-1px) }
+    .btn:disabled{ opacity:.5; cursor:not-allowed }
 
     /* Results bars */
     .bars{display:grid; gap:12px; grid-template-columns:1fr}
@@ -87,17 +89,19 @@
     .chip{display:inline-flex; align-items:center; gap:8px; padding:6px 10px; border:1px solid var(--border); background:rgba(255,255,255,.6); border-radius:999px; font-size:12px}
     .topline{font-size:20px; font-weight:900; margin-top:6px}
     .small{font-size:12px}
+    .muted{color:var(--muted)}
     .table{width:100%; border-collapse:collapse; font-size:14px}
     .table th,.table td{border-top:1px solid var(--border); padding:10px 8px; text-align:left}
     .table th:last-child,.table td:last-child{text-align:right}
 
-    footer{color:var(--muted)}
+    .capture{margin-top:12px; display:flex; gap:10px; flex-wrap:wrap}
+    .payload{width:100%; min-height:84px; border:1px dashed var(--border); border-radius:12px; padding:10px; background:rgba(255,255,255,.6); font:12px/1.4 ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace; color:var(--text)}
   </style>
 </head>
 <body>
   <div class="wrap">
     <header>
-      <!-- Keep logo.png next to this file -->
+      <!-- Keep logo.png next to this HTML -->
       <img src="logo.png" alt="RHU crest logo" />
       <div>
         <h1>Real Housewives University</h1>
@@ -134,31 +138,39 @@
           <input id="lifestyleNum" class="num" type="number" min="1" max="10" value="5" />
         </div>
 
-        <div style="display:flex; gap:10px; margin-top:8px;">
-          <button id="resetBtn" class="btn secondary">Reset to 5s</button>
-          <button id="shareBtn" class="btn">Copy Share Link</button>
+        <!-- Controls -->
+        <div style="display:flex; gap:10px; margin-top:10px; flex-wrap:wrap;">
+          <button id="submitBtn" class="btn">Submit</button>
+          <button id="resetBtn" class="btn ghost">Reset to 5s</button>
+          <button id="shareBtn" class="btn secondary" disabled>Copy Share Link</button>
         </div>
-        <div class="small" style="color:var(--muted)">The share link encodes your slider values so others can see your scores.</div>
+        <div class="small muted">Adjust your sliders and click <strong>Submit</strong> to see your matches.</div>
       </div>
 
       <!-- RESULTS -->
-      <div class="card">
+      <div class="card" id="resultsCard" aria-live="polite">
         <div style="display:flex; justify-content:space-between; align-items:center;">
           <div class="section-title">Results</div>
           <span class="chip">Scores are weighted 1–10</span>
         </div>
 
-        <div id="headline" class="topline">Adjust the sliders to see your match.</div>
-        <div id="subcopy" class="small" style="color:var(--muted); margin:6px 0 12px 0;"></div>
+        <div id="headline" class="topline muted">Set your rankings, then press Submit.</div>
+        <div id="subcopy" class="small muted" style="margin:6px 0 12px 0;"></div>
 
-        <div id="bars" class="bars" style="margin-top:8px"></div>
+        <div id="bars" class="bars" style="margin-top:8px; display:none;"></div>
 
-        <h3 style="margin-top:16px;margin-bottom:6px">Top 3</h3>
-        <table class="table" id="top3"></table>
+        <h3 style="margin-top:16px;margin-bottom:6px; display:none;" id="top3Title">Top 3</h3>
+        <table class="table" id="top3" style="display:none;"></table>
+
+        <!-- Capture -->
+        <div class="capture" id="captureArea" style="display:none;">
+          <button id="copyJsonBtn" class="btn secondary">Copy Submission JSON</button>
+          <textarea id="payload" class="payload" readonly></textarea>
+        </div>
       </div>
     </section>
 
-    <footer class="small" style="margin-top:18px">
+    <footer class="small muted" style="margin-top:18px">
       Admin note: weights mirror your RH franchises table. Want 0–10 instead of 1–10? See “NORMALIZE_ZERO_TO_TEN” in the code.
     </footer>
   </div>
@@ -198,31 +210,64 @@
 
     const NORMALIZE_ZERO_TO_TEN = false;
 
-    // ======= UI BOOT =======
+    // ======= UI refs =======
     const ids = ["comedy","chemistry","drama","xfactor","fashion","lifestyle"];
     const sliders = Object.fromEntries(ids.map(id => [id, document.getElementById(id)]));
     const nums    = Object.fromEntries(ids.map(id => [id, document.getElementById(id+"Num")]));
 
-    // Bind range <-> number sync
+    const submitBtn = document.getElementById("submitBtn");
+    const resetBtn  = document.getElementById("resetBtn");
+    const shareBtn  = document.getElementById("shareBtn");
+
+    const barsEl = document.getElementById("bars");
+    const top3El = document.getElementById("top3");
+    const top3TitleEl = document.getElementById("top3Title");
+    const headlineEl = document.getElementById("headline");
+    const subcopyEl  = document.getElementById("subcopy");
+
+    const captureArea = document.getElementById("captureArea");
+    const payloadBox  = document.getElementById("payload");
+    const copyJsonBtn = document.getElementById("copyJsonBtn");
+
+    // Bind range <-> number sync (no auto-compute)
     for (const id of ids) {
-      sliders[id].addEventListener("input", () => { nums[id].value = sliders[id].value; compute(); });
+      sliders[id].addEventListener("input", () => { nums[id].value = sliders[id].value; });
       nums[id].addEventListener("input", () => {
         let v = Math.max(1, Math.min(10, Number(nums[id].value || 1)));
-        nums[id].value = v; sliders[id].value = v; compute();
+        nums[id].value = v; sliders[id].value = v;
       });
     }
 
-    // Reset + Share
-    document.getElementById("resetBtn").onclick = () => {
+    // Reset restores defaults & hides results
+    resetBtn.onclick = () => {
       for (const id of ids) { sliders[id].value = 5; nums[id].value = 5; }
-      compute();
-    };
-    document.getElementById("shareBtn").onclick = () => {
-      const link = buildShareLink();
-      navigator.clipboard.writeText(link).then(() => alert("Link copied to clipboard!"));
+      hideResults();
     };
 
-    // Load from URL (q param: base64 json of values)
+    // Submit computes + reveals results and payload
+    submitBtn.onclick = () => {
+      const values = getValues();
+      const rows = score(values);
+      renderResults(rows);
+      buildPayload(values, rows);
+      // enable share
+      shareBtn.disabled = false;
+    };
+
+    // Share link copies current slider state (not results)
+    shareBtn.onclick = () => {
+      const link = buildShareLink(getValues());
+      navigator.clipboard.writeText(link).then(()=>alert("Share link copied!"));
+    };
+
+    copyJsonBtn.onclick = () => {
+      payloadBox.select();
+      document.execCommand("copy");
+      copyJsonBtn.textContent = "Copied!";
+      setTimeout(()=> copyJsonBtn.textContent = "Copy Submission JSON", 1200);
+    };
+
+    // Load prefilled values if present, but do NOT compute yet
     const pre = loadFromUrl();
     if (pre) {
       for (const id of ids) {
@@ -232,13 +277,24 @@
         }
       }
     }
-    compute(); // initial render
+    hideResults(); // initial state
 
     // ======= CORE =======
+    function hideResults(){
+      headlineEl.classList.add("muted");
+      headlineEl.textContent = "Set your rankings, then press Submit.";
+      subcopyEl.textContent = "";
+      barsEl.style.display = "none";
+      top3El.style.display = "none";
+      top3TitleEl.style.display = "none";
+      captureArea.style.display = "none";
+      shareBtn.disabled = true;
+    }
+
     function getValues() {
       const vals = Object.fromEntries(ids.map(id => [id, Number(sliders[id].value)]));
       if (!NORMALIZE_ZERO_TO_TEN) return vals;
-      for (const k of Object.keys(vals)) vals[k] = Math.round(((vals[k]-1)/9)*10*10)/10;
+      for (const k of Object.keys(vals)) vals[k] = Math.round(((vals[k]-1)/9)*10*10)/10; // map 1..10 → 0..10
       return vals;
     }
 
@@ -259,19 +315,15 @@
       return rows;
     }
 
-    function compute() {
-      const values = getValues();
-      const rows = score(values);
+    function renderResults(rows){
+      if (!rows.length) return;
 
-      // Headline
-      if (rows.length) {
-        const top = rows[0];
-        document.getElementById("headline").innerHTML =
-          `Top match: <span class="chip" style="border-color:#f472b6; color:#b91c5f">${top.label}</span> — ${top.score}`;
-        document.getElementById("subcopy").textContent = top.blurb || "";
-      }
+      const top = rows[0];
+      headlineEl.classList.remove("muted");
+      headlineEl.innerHTML =
+        `Top match: <span class="chip" style="border-color:#f472b6; color:#b91c5f">${top.label}</span> — ${top.score}`;
+      subcopyEl.textContent = top.blurb || "";
 
-      // Bars (pink gradient only)
       const maxScore = Math.max(...rows.map(r=>r.score)) || 10;
       const bars = rows.map(r => {
         const pct = Math.round((r.score / maxScore) * 100);
@@ -287,9 +339,9 @@
           </div>
         `;
       }).join("");
-      document.getElementById("bars").innerHTML = bars;
+      barsEl.innerHTML = bars;
+      barsEl.style.display = "grid";
 
-      // Top 3 table
       const top3 = rows.slice(0,3).map((r,i)=>`
         <tr>
           <td style="width:32px">${i+1}</td>
@@ -297,20 +349,28 @@
           <td>${r.score}</td>
         </tr>
       `).join("");
-      document.getElementById("top3").innerHTML =
-        `<tr><th>#</th><th>Franchise</th><th>Score</th></tr>${top3}`;
+      top3El.innerHTML = `<tr><th>#</th><th>Franchise</th><th>Score</th></tr>${top3}`;
+      top3El.style.display = "table";
+      top3TitleEl.style.display = "block";
+    }
 
-      // update URL silently
-      const url = new URL(window.location);
-      url.searchParams.set("q", encode(values));
-      window.history.replaceState({}, "", url);
+    function buildPayload(values, rows){
+      const payload = {
+        timestamp: new Date().toISOString(),
+        sliders: values,
+        top3: rows.slice(0,3).map(r=>({key:r.key,label:r.label,score:r.score})),
+        scores: rows.map(r=>({key:r.key,label:r.label,score:r.score})),
+        shareLink: buildShareLink(values)
+      };
+      payloadBox.value = JSON.stringify(payload);
+      captureArea.style.display = "flex";
     }
 
     function encode(obj){ return btoa(encodeURIComponent(JSON.stringify(obj))); }
     function decode(str){ try { return JSON.parse(decodeURIComponent(atob(str))); } catch(e){ return null; } }
-    function buildShareLink(){
+    function buildShareLink(vals){
       const url = new URL(window.location.href);
-      url.searchParams.set("q", encode(getValues()));
+      url.searchParams.set("q", encode(vals));
       return url.toString();
     }
     function loadFromUrl(){
@@ -320,3 +380,4 @@
   </script>
 </body>
 </html>
+
