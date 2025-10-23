@@ -6,102 +6,61 @@
   <title>Real Housewives University — Franchise compatibility index</title>
   <style>
     :root{
-      /* THEME — light pink UI */
-      --bg: #ffe9f1;
-      --bg-accent: #ffd3e3;
-      --panel: #ffffff;
-      --text: #1f0a15;
-      --muted: #7a4d61;
-      --border: rgba(122,77,97,.18);
-      --ring: rgba(243,114,166,.35);
-      --shadow: 0 10px 28px rgba(122,77,97,.15), 0 1px 6px rgba(122,77,97,.1);
-
-      /* Pink-only gradient for bars & emphasis */
-      --track: rgba(122,77,97,.20);
-      --fill: linear-gradient(90deg,#ffd1df,#ff99bd,#f472b6,#db2777);
+      --bg:#ffe9f1;--bg-accent:#ffd3e3;--panel:#ffffff;--text:#1f0a15;
+      --muted:#7a4d61;--border:rgba(122,77,97,.18);--ring:rgba(243,114,166,.35);
+      --shadow:0 10px 28px rgba(122,77,97,.15),0 1px 6px rgba(122,77,97,.1);
+      --track:rgba(122,77,97,.20);
+      --fill:linear-gradient(90deg,#ffd1df,#ff99bd,#f472b6,#db2777);
     }
-
     *{box-sizing:border-box}
-    html,body{height:100%}
-    body{
-      margin:0; color:var(--text);
-      font:16px/1.55 system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,"Apple Color Emoji","Segoe UI Emoji";
-      background:
-        radial-gradient(1400px 700px at 0% -10%, var(--bg-accent), transparent 60%),
-        radial-gradient(1300px 700px at 120% 0%, var(--bg-accent), transparent 60%),
-        var(--bg);
-    }
+    body{margin:0;font:16px/1.55 system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;
+      color:var(--text);background:
+      radial-gradient(1400px 700px at 0% -10%,var(--bg-accent),transparent 60%),
+      radial-gradient(1300px 700px at 120% 0%,var(--bg-accent),transparent 60%),
+      var(--bg);}
     .wrap{max-width:980px;margin:0 auto;padding:28px 20px 56px}
-
-    /* Header */
-    header{
-      display:flex; align-items:center; gap:18px; padding:16px 18px;
-      background:rgba(255,255,255,.65);
-      border:1px solid var(--border);
-      border-radius:20px; box-shadow:var(--shadow);
-      backdrop-filter:saturate(120%) blur(6px);
-    }
-    header img{
-      width:96px; height:96px; object-fit:contain;
-      border-radius:16px; background:rgba(255,255,255,.6); padding:10px;
-      box-shadow:inset 0 0 0 1px var(--border);
-    }
-    h1{font-weight:900; letter-spacing:-.02em; margin:2px 0 2px; font-size:28px}
-    .subhead{margin:0; font-size:14px; color:var(--muted); font-weight:700; text-transform:uppercase; letter-spacing:.08em}
-
-    /* Cards & layout */
-    .grid{display:grid;gap:18px; margin-top:18px}
-    .card{background:var(--panel); border:1px solid var(--border); border-radius:18px; box-shadow:var(--shadow); padding:20px}
-    .q{display:grid;gap:12px}
-    .section-title{font-size:18px; font-weight:900; margin:0 0 4px}
-
-    /* Inputs */
-    .row{display:flex; align-items:center; gap:14px}
-    .row label{width:160px; font-weight:800}
-    input[type=range]{width:100%; appearance:none; height:10px; border-radius:999px; background:var(--track); outline:none}
-    input[type=range]::-webkit-slider-thumb{
-      -webkit-appearance:none; width:22px; height:22px; border-radius:50%;
-      background:#fff; border:3px solid transparent; box-shadow:0 0 0 3px var(--ring); cursor:pointer
-    }
-    .num{
-      width:56px; text-align:center; border:1px solid var(--border);
-      border-radius:12px; padding:8px 10px; background:rgba(255,255,255,.65); color:var(--text)
-    }
-
-    .btn{
-      cursor:pointer; border:1px solid var(--border); background:#d94690;
-      color:#fff; padding:12px 14px; border-radius:12px; font-weight:800;
-      transition:.15s transform ease, .15s opacity ease
-    }
-    .btn.secondary{ background:transparent; color:var(--text) }
-    .btn.ghost{ background:rgba(255,255,255,.6); color:var(--text) }
-    .btn:hover{ transform:translateY(-1px) }
-    .btn:disabled{ opacity:.5; cursor:not-allowed }
-
-    /* Results bars */
-    .bars{display:grid; gap:12px; grid-template-columns:1fr}
-    @media (min-width:860px){ .bars{ grid-template-columns:1fr 1fr } }
-    .barlabel{display:flex; justify-content:space-between; font-size:14px; margin-bottom:6px}
-    .track{height:10px; background:var(--track); border-radius:999px; overflow:hidden}
-    .fill{height:10px; border-radius:999px; background:var(--fill); background-size:200% 100%; animation:shine 3s linear infinite}
+    header{display:flex;align-items:center;gap:18px;padding:16px 18px;
+      background:rgba(255,255,255,.65);border:1px solid var(--border);
+      border-radius:20px;box-shadow:var(--shadow);backdrop-filter:saturate(120%) blur(6px);}
+    header img{width:96px;height:96px;object-fit:contain;border-radius:16px;
+      background:rgba(255,255,255,.6);padding:10px;box-shadow:inset 0 0 0 1px var(--border);}
+    h1{font-weight:900;letter-spacing:-.02em;margin:2px 0;font-size:28px}
+    .subhead{margin:0;font-size:14px;color:var(--muted);font-weight:700;text-transform:uppercase;letter-spacing:.08em}
+    .grid{display:grid;gap:18px;margin-top:18px}
+    .card{background:var(--panel);border:1px solid var(--border);border-radius:18px;
+      box-shadow:var(--shadow);padding:20px}
+    .section-title{font-size:18px;font-weight:900;margin:0 0 4px}
+    .row{display:flex;align-items:center;gap:14px}
+    .row label{width:160px;font-weight:800}
+    input[type=range]{width:100%;appearance:none;height:10px;border-radius:999px;background:var(--track)}
+    input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:22px;height:22px;border-radius:50%;
+      background:#fff;border:3px solid transparent;box-shadow:0 0 0 3px var(--ring);cursor:pointer}
+    .num{width:56px;text-align:center;border:1px solid var(--border);border-radius:12px;
+      padding:8px 10px;background:rgba(255,255,255,.65);color:var(--text)}
+    .btn{cursor:pointer;border:1px solid var(--border);background:#d94690;color:#fff;
+      padding:12px 14px;border-radius:12px;font-weight:800;transition:.15s transform ease}
+    .btn.secondary{background:transparent;color:var(--text)}
+    .btn:hover{transform:translateY(-1px)}
+    .bars{display:grid;gap:12px;grid-template-columns:1fr}
+    @media(min-width:860px){.bars{grid-template-columns:1fr 1fr}}
+    .barlabel{display:flex;justify-content:space-between;font-size:14px;margin-bottom:6px}
+    .track{height:10px;background:var(--track);border-radius:999px;overflow:hidden}
+    .fill{height:10px;border-radius:999px;background:var(--fill);background-size:200% 100%;
+      animation:shine 3s linear infinite}
     @keyframes shine{0%{background-position:0% 50%}100%{background-position:200% 50%}}
-
-    .chip{display:inline-flex; align-items:center; gap:8px; padding:6px 10px; border:1px solid var(--border); background:rgba(255,255,255,.6); border-radius:999px; font-size:12px}
-    .topline{font-size:20px; font-weight:900; margin-top:6px}
-    .small{font-size:12px}
-    .muted{color:var(--muted)}
-    .table{width:100%; border-collapse:collapse; font-size:14px}
-    .table th,.table td{border-top:1px solid var(--border); padding:10px 8px; text-align:left}
+    .chip{display:inline-flex;align-items:center;gap:8px;padding:6px 10px;
+      border:1px solid var(--border);background:rgba(255,255,255,.6);
+      border-radius:999px;font-size:12px}
+    .topline{font-size:20px;font-weight:900;margin-top:6px}
+    .small{font-size:12px}.muted{color:var(--muted)}
+    .table{width:100%;border-collapse:collapse;font-size:14px}
+    .table th,.table td{border-top:1px solid var(--border);padding:10px 8px;text-align:left}
     .table th:last-child,.table td:last-child{text-align:right}
-
-    .capture{margin-top:12px; display:flex; gap:10px; flex-wrap:wrap}
-    .payload{width:100%; min-height:84px; border:1px dashed var(--border); border-radius:12px; padding:10px; background:rgba(255,255,255,.6); font:12px/1.4 ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace; color:var(--text)}
   </style>
 </head>
 <body>
   <div class="wrap">
     <header>
-      <!-- Keep logo.png next to this HTML -->
       <img src="logo.png" alt="RHU crest logo" />
       <div>
         <h1>Real Housewives University</h1>
@@ -110,274 +69,113 @@
     </header>
 
     <section class="grid">
-      <!-- INPUTS -->
-      <div class="card q">
+      <div class="card">
         <div class="section-title">Rankings</div>
-        <div class="row"><label for="comedy">Comedy</label>
-          <input id="comedy" type="range" min="1" max="10" value="5" />
-          <input id="comedyNum" class="num" type="number" min="1" max="10" value="5" />
-        </div>
-        <div class="row"><label for="chemistry">Cast Chemistry</label>
-          <input id="chemistry" type="range" min="1" max="10" value="5" />
-          <input id="chemistryNum" class="num" type="number" min="1" max="10" value="5" />
-        </div>
-        <div class="row"><label for="drama">Drama</label>
-          <input id="drama" type="range" min="1" max="10" value="5" />
-          <input id="dramaNum" class="num" type="number" min="1" max="10" value="5" />
-        </div>
-        <div class="row"><label for="xfactor">X-Factor</label>
-          <input id="xfactor" type="range" min="1" max="10" value="5" />
-          <input id="xfactorNum" class="num" type="number" min="1" max="10" value="5" />
-        </div>
-        <div class="row"><label for="fashion">Fashion</label>
-          <input id="fashion" type="range" min="1" max="10" value="5" />
-          <input id="fashionNum" class="num" type="number" min="1" max="10" value="5" />
-        </div>
-        <div class="row"><label for="lifestyle">Lifestyle</label>
-          <input id="lifestyle" type="range" min="1" max="10" value="5" />
-          <input id="lifestyleNum" class="num" type="number" min="1" max="10" value="5" />
-        </div>
-
-        <!-- Controls -->
-        <div style="display:flex; gap:10px; margin-top:10px; flex-wrap:wrap;">
+        <div class="row"><label>Comedy</label><input id="comedy" type="range" min="1" max="10" value="5"/><input id="comedyNum" class="num" type="number" min="1" max="10" value="5"/></div>
+        <div class="row"><label>Cast Chemistry</label><input id="chemistry" type="range" min="1" max="10" value="5"/><input id="chemistryNum" class="num" type="number" min="1" max="10" value="5"/></div>
+        <div class="row"><label>Drama</label><input id="drama" type="range" min="1" max="10" value="5"/><input id="dramaNum" class="num" type="number" min="1" max="10" value="5"/></div>
+        <div class="row"><label>X-Factor</label><input id="xfactor" type="range" min="1" max="10" value="5"/><input id="xfactorNum" class="num" type="number" min="1" max="10" value="5"/></div>
+        <div class="row"><label>Fashion</label><input id="fashion" type="range" min="1" max="10" value="5"/><input id="fashionNum" class="num" type="number" min="1" max="10" value="5"/></div>
+        <div class="row"><label>Lifestyle</label><input id="lifestyle" type="range" min="1" max="10" value="5"/><input id="lifestyleNum" class="num" type="number" min="1" max="10" value="5"/></div>
+        <div style="display:flex;gap:10px;margin-top:10px;flex-wrap:wrap;">
           <button id="submitBtn" class="btn">Submit</button>
-          <button id="resetBtn" class="btn ghost">Reset to 5s</button>
-          <button id="shareBtn" class="btn secondary" disabled>Copy Share Link</button>
+          <button id="resetBtn" class="btn secondary">Reset</button>
         </div>
-        <div class="small muted">Adjust your sliders and click <strong>Submit</strong> to see your matches.</div>
+        <p class="small muted">Adjust sliders, then click <strong>Submit</strong>.</p>
       </div>
 
-      <!-- RESULTS -->
-      <div class="card" id="resultsCard" aria-live="polite">
-        <div style="display:flex; justify-content:space-between; align-items:center;">
+      <div class="card" id="resultsCard">
+        <div style="display:flex;justify-content:space-between;align-items:center;">
           <div class="section-title">Results</div>
-          <span class="chip">Scores are weighted 1–10</span>
+          <span class="chip">Scores weighted 1–10</span>
         </div>
-
         <div id="headline" class="topline muted">Set your rankings, then press Submit.</div>
         <div id="subcopy" class="small muted" style="margin:6px 0 12px 0;"></div>
-
-        <div id="bars" class="bars" style="margin-top:8px; display:none;"></div>
-
-        <h3 style="margin-top:16px;margin-bottom:6px; display:none;" id="top3Title">Top 3</h3>
-        <table class="table" id="top3" style="display:none;"></table>
-
-        <!-- Capture -->
-        <div class="capture" id="captureArea" style="display:none;">
-          <button id="copyJsonBtn" class="btn secondary">Copy Submission JSON</button>
-          <textarea id="payload" class="payload" readonly></textarea>
-        </div>
+        <div id="bars" class="bars" style="display:none;"></div>
+        <h3 id="top3Title" style="margin-top:16px;margin-bottom:6px;display:none;">Top 3</h3>
+        <table id="top3" class="table" style="display:none;"></table>
       </div>
     </section>
 
-    <footer class="small muted" style="margin-top:18px">
-      Admin note: weights mirror your RH franchises table. Want 0–10 instead of 1–10? See “NORMALIZE_ZERO_TO_TEN” in the code.
-    </footer>
+    <footer class="small muted" style="margin-top:18px">Data automatically saved to your Google Sheet.</footer>
   </div>
 
   <script>
-    // ======= DATA =======
-    const FRANCHISES = [
-      { key: "atl",   label: "RHOA (Atlanta)",     color: "#F97316",
-        blurb: "Quick-witted shade, loyalty tests, and boss energy." },
-      { key: "nyc",   label: "RHONY (New York)",   color: "#34D399",
-        blurb: "Fast-talking hustle and legacy vibes." },
-      { key: "bh",    label: "RHOBH (Beverly Hills)", color: "#60A5FA",
-        blurb: "High-gloss glam, diamonds, and drama." },
-      { key: "nj",    label: "RHONJ (New Jersey)", color: "#F472B6",
-        blurb: "Family first, feud second; passionate and direct." },
-      { key: "potomac", label: "RHOP (Potomac)",   color: "#A78BFA",
-        blurb: "Etiquette with an edge; refined reads, surgical shade." },
-      { key: "slc",   label: "RHOSLC (Salt Lake City)", color: "#67E8F9",
-        blurb: "Snow-globe serenity with simmering tea and X-factor." },
-      { key: "miami", label: "RHOM (Miami)",       color: "#F87171",
-        blurb: "Tropical luxe, high heat, main-character energy." },
-      { key: "oc",    label: "RHOC (Orange County)", color: "#F59E0B",
-        blurb: "Sun-kissed OG energy; Pilates at 9, petty at 10." },
+    const FRANCHISES=[
+      {key:"atl",label:"RHOA (Atlanta)",color:"#F97316",blurb:"Quick-witted shade, loyalty tests, and boss energy."},
+      {key:"nyc",label:"RHONY (New York)",color:"#34D399",blurb:"Fast-talking hustle and legacy vibes."},
+      {key:"bh",label:"RHOBH (Beverly Hills)",color:"#60A5FA",blurb:"High-gloss glam, diamonds, and drama."},
+      {key:"nj",label:"RHONJ (New Jersey)",color:"#F472B6",blurb:"Family first, feud second; passionate and direct."},
+      {key:"potomac",label:"RHOP (Potomac)",color:"#A78BFA",blurb:"Etiquette with an edge; refined reads, surgical shade."},
+      {key:"slc",label:"RHOSLC (Salt Lake City)",color:"#67E8F9",blurb:"Snow-globe serenity with simmering tea and X-factor."},
+      {key:"miami",label:"RHOM (Miami)",color:"#F87171",blurb:"Tropical luxe, high heat, main-character energy."},
+      {key:"oc",label:"RHOC (Orange County)",color:"#F59E0B",blurb:"Sun-kissed OG energy; Pilates at 9, petty at 10."}
     ];
-
-    // Weight table: each row must sum ≈ 1.0
-    const W = {
-      atl:     { comedy:.25, chemistry:.25, drama:.20, xfactor:.15, fashion:.10, lifestyle:.05 },
-      nyc:     { comedy:.20, chemistry:.25, drama:.15, xfactor:.15, fashion:.10, lifestyle:.15 },
-      bh:      { comedy:.10, chemistry:.10, drama:.15, xfactor:.20, fashion:.25, lifestyle:.20 },
-      nj:      { comedy:.15, chemistry:.20, drama:.25, xfactor:.20, fashion:.10, lifestyle:.10 },
-      potomac: { comedy:.20, chemistry:.15, drama:.20, xfactor:.20, fashion:.15, lifestyle:.10 },
-      slc:     { comedy:.10, chemistry:.10, drama:.25, xfactor:.25, fashion:.15, lifestyle:.15 },
-      miami:   { comedy:.10, chemistry:.15, drama:.15, xfactor:.20, fashion:.20, lifestyle:.20 },
-      oc:      { comedy:.15, chemistry:.20, drama:.15, xfactor:.15, fashion:.15, lifestyle:.20 },
+    const W={
+      atl:{comedy:.25,chemistry:.25,drama:.20,xfactor:.15,fashion:.10,lifestyle:.05},
+      nyc:{comedy:.20,chemistry:.25,drama:.15,xfactor:.15,fashion:.10,lifestyle:.15},
+      bh:{comedy:.10,chemistry:.10,drama:.15,xfactor:.20,fashion:.25,lifestyle:.20},
+      nj:{comedy:.15,chemistry:.20,drama:.25,xfactor:.20,fashion:.10,lifestyle:.10},
+      potomac:{comedy:.20,chemistry:.15,drama:.20,xfactor:.20,fashion:.15,lifestyle:.10},
+      slc:{comedy:.10,chemistry:.10,drama:.25,xfactor:.25,fashion:.15,lifestyle:.15},
+      miami:{comedy:.10,chemistry:.15,drama:.15,xfactor:.20,fashion:.20,lifestyle:.20},
+      oc:{comedy:.15,chemistry:.20,drama:.15,xfactor:.15,fashion:.15,lifestyle:.20}
     };
+    const ids=["comedy","chemistry","drama","xfactor","fashion","lifestyle"];
+    const sliders=Object.fromEntries(ids.map(i=>[i,document.getElementById(i)]));
+    const nums=Object.fromEntries(ids.map(i=>[i,document.getElementById(i+"Num")]));
+    const submitBtn=document.getElementById("submitBtn"),resetBtn=document.getElementById("resetBtn");
+    const barsEl=document.getElementById("bars"),top3El=document.getElementById("top3"),
+      top3TitleEl=document.getElementById("top3Title"),headline=document.getElementById("headline"),sub=document.getElementById("subcopy");
 
-    const NORMALIZE_ZERO_TO_TEN = false;
-
-    // ======= UI refs =======
-    const ids = ["comedy","chemistry","drama","xfactor","fashion","lifestyle"];
-    const sliders = Object.fromEntries(ids.map(id => [id, document.getElementById(id)]));
-    const nums    = Object.fromEntries(ids.map(id => [id, document.getElementById(id+"Num")]));
-
-    const submitBtn = document.getElementById("submitBtn");
-    const resetBtn  = document.getElementById("resetBtn");
-    const shareBtn  = document.getElementById("shareBtn");
-
-    const barsEl = document.getElementById("bars");
-    const top3El = document.getElementById("top3");
-    const top3TitleEl = document.getElementById("top3Title");
-    const headlineEl = document.getElementById("headline");
-    const subcopyEl  = document.getElementById("subcopy");
-
-    const captureArea = document.getElementById("captureArea");
-    const payloadBox  = document.getElementById("payload");
-    const copyJsonBtn = document.getElementById("copyJsonBtn");
-
-    // Bind range <-> number sync (no auto-compute)
-    for (const id of ids) {
-      sliders[id].addEventListener("input", () => { nums[id].value = sliders[id].value; });
-      nums[id].addEventListener("input", () => {
-        let v = Math.max(1, Math.min(10, Number(nums[id].value || 1)));
-        nums[id].value = v; sliders[id].value = v;
-      });
+    for(const id of ids){
+      sliders[id].addEventListener("input",()=>nums[id].value=sliders[id].value);
+      nums[id].addEventListener("input",()=>{let v=Math.max(1,Math.min(10,Number(nums[id].value||1)));nums[id].value=v;sliders[id].value=v;});
     }
-
-    // Reset restores defaults & hides results
-    resetBtn.onclick = () => {
-      for (const id of ids) { sliders[id].value = 5; nums[id].value = 5; }
-      hideResults();
+    resetBtn.onclick=()=>{for(const i of ids){sliders[i].value=5;nums[i].value=5;}hideResults();};
+    submitBtn.onclick=()=>{
+      const vals=getValues(),rows=score(vals);
+      render(rows);sendToSheet(buildPayload(vals,rows));
     };
-
-    // Submit computes + reveals results and payload
-    submitBtn.onclick = () => {
-      const values = getValues();
-      const rows = score(values);
-      renderResults(rows);
-      buildPayload(values, rows);
-      // enable share
-      shareBtn.disabled = false;
-    };
-
-    // Share link copies current slider state (not results)
-    shareBtn.onclick = () => {
-      const link = buildShareLink(getValues());
-      navigator.clipboard.writeText(link).then(()=>alert("Share link copied!"));
-    };
-
-    copyJsonBtn.onclick = () => {
-      payloadBox.select();
-      document.execCommand("copy");
-      copyJsonBtn.textContent = "Copied!";
-      setTimeout(()=> copyJsonBtn.textContent = "Copy Submission JSON", 1200);
-    };
-
-    // Load prefilled values if present, but do NOT compute yet
-    const pre = loadFromUrl();
-    if (pre) {
-      for (const id of ids) {
-        if (pre[id] != null) {
-          const v = String(pre[id]);
-          sliders[id].value = v; nums[id].value = v;
-        }
-      }
+    function hideResults(){headline.classList.add("muted");headline.textContent="Set your rankings, then press Submit.";sub.textContent="";barsEl.style.display="none";top3El.style.display="none";top3TitleEl.style.display="none";}
+    function getValues(){return Object.fromEntries(ids.map(i=>[i,Number(sliders[i].value)]));}
+    function score(v){const r=[];for(const f of FRANCHISES){const w=W[f.key];
+      const s=v.comedy*w.comedy+v.chemistry*w.chemistry+v.drama*w.drama+v.xfactor*w.xfactor+v.fashion*w.fashion+v.lifestyle*w.lifestyle;
+      r.push({key:f.key,label:f.label,blurb:f.blurb,score:Math.round(s*100)/100});}
+      return r.sort((a,b)=>b.score-a.score);}
+    function render(rows){
+      if(!rows.length)return;
+      const t=rows[0];
+      headline.classList.remove("muted");
+      headline.innerHTML=`Top match: <span class="chip" style="border-color:#f472b6;color:#b91c5f">${t.label}</span> — ${t.score}`;
+      sub.textContent=t.blurb;
+      const max=Math.max(...rows.map(r=>r.score))||10;
+      barsEl.innerHTML=rows.map(r=>{
+        const pct=Math.round((r.score/max)*100);
+        return `<div class="bar"><div class="barlabel"><span>${r.label}</span><span>${r.score}</span></div>
+        <div class="track"><div class="fill" style="width:${pct}%;"></div></div></div>`;}).join("");
+      barsEl.style.display="grid";
+      top3El.innerHTML="<tr><th>#</th><th>Franchise</th><th>Score</th></tr>"+
+        rows.slice(0,3).map((r,i)=>`<tr><td>${i+1}</td><td>${r.label}</td><td>${r.score}</td></tr>`).join("");
+      top3El.style.display="table";top3TitleEl.style.display="block";
     }
-    hideResults(); // initial state
-
-    // ======= CORE =======
-    function hideResults(){
-      headlineEl.classList.add("muted");
-      headlineEl.textContent = "Set your rankings, then press Submit.";
-      subcopyEl.textContent = "";
-      barsEl.style.display = "none";
-      top3El.style.display = "none";
-      top3TitleEl.style.display = "none";
-      captureArea.style.display = "none";
-      shareBtn.disabled = true;
-    }
-
-    function getValues() {
-      const vals = Object.fromEntries(ids.map(id => [id, Number(sliders[id].value)]));
-      if (!NORMALIZE_ZERO_TO_TEN) return vals;
-      for (const k of Object.keys(vals)) vals[k] = Math.round(((vals[k]-1)/9)*10*10)/10; // map 1..10 → 0..10
-      return vals;
-    }
-
-    function score(values) {
-      const rows = [];
-      for (const f of FRANCHISES) {
-        const w = W[f.key];
-        const s =
-          values.comedy    * w.comedy +
-          values.chemistry * w.chemistry +
-          values.drama     * w.drama +
-          values.xfactor   * w.xfactor +
-          values.fashion   * w.fashion +
-          values.lifestyle * w.lifestyle;
-        rows.push({ key:f.key, label:f.label, color:f.color, blurb:f.blurb, score: Math.round(s*100)/100 });
-      }
-      rows.sort((a,b)=> b.score - a.score);
-      return rows;
-    }
-
-    function renderResults(rows){
-      if (!rows.length) return;
-
-      const top = rows[0];
-      headlineEl.classList.remove("muted");
-      headlineEl.innerHTML =
-        `Top match: <span class="chip" style="border-color:#f472b6; color:#b91c5f">${top.label}</span> — ${top.score}`;
-      subcopyEl.textContent = top.blurb || "";
-
-      const maxScore = Math.max(...rows.map(r=>r.score)) || 10;
-      const bars = rows.map(r => {
-        const pct = Math.round((r.score / maxScore) * 100);
-        return `
-          <div class="bar">
-            <div class="barlabel">
-              <span>${r.label}</span>
-              <span>${r.score}</span>
-            </div>
-            <div class="track">
-              <div class="fill" style="width:${pct}%;"></div>
-            </div>
-          </div>
-        `;
-      }).join("");
-      barsEl.innerHTML = bars;
-      barsEl.style.display = "grid";
-
-      const top3 = rows.slice(0,3).map((r,i)=>`
-        <tr>
-          <td style="width:32px">${i+1}</td>
-          <td>${r.label}</td>
-          <td>${r.score}</td>
-        </tr>
-      `).join("");
-      top3El.innerHTML = `<tr><th>#</th><th>Franchise</th><th>Score</th></tr>${top3}`;
-      top3El.style.display = "table";
-      top3TitleEl.style.display = "block";
-    }
-
-    function buildPayload(values, rows){
-      const payload = {
-        timestamp: new Date().toISOString(),
-        sliders: values,
-        top3: rows.slice(0,3).map(r=>({key:r.key,label:r.label,score:r.score})),
-        scores: rows.map(r=>({key:r.key,label:r.label,score:r.score})),
-        shareLink: buildShareLink(values)
+    function buildPayload(vals,rows){
+      return{
+        timestamp:new Date().toISOString(),
+        sliders:vals,
+        top3:rows.slice(0,3).map(r=>({label:r.label,score:r.score})),
+        scores:rows.map(r=>({label:r.label,score:r.score})),
+        shareLink:location.href
       };
-      payloadBox.value = JSON.stringify(payload);
-      captureArea.style.display = "flex";
     }
-
-    function encode(obj){ return btoa(encodeURIComponent(JSON.stringify(obj))); }
-    function decode(str){ try { return JSON.parse(decodeURIComponent(atob(str))); } catch(e){ return null; } }
-    function buildShareLink(vals){
-      const url = new URL(window.location.href);
-      url.searchParams.set("q", encode(vals));
-      return url.toString();
+    async function sendToSheet(payload){
+      const url="https://script.google.com/macros/s/AKfycbymBrKiRfS9VGzO8n83LzSVx_Q-Sbat7J9i-kEnZ95ShUfcs2Gt8HSxDkvG7rDfAOZ4/exec";
+      try{
+        await fetch(url,{method:"POST",body:JSON.stringify(payload),headers:{"Content-Type":"application/json"},mode:"no-cors"});
+        console.log("✅ Sent to Google Sheet");
+      }catch(e){console.error("❌ Sheet error",e);}
     }
-    function loadFromUrl(){
-      const q = new URLSearchParams(window.location.search).get("q");
-      return q ? decode(q) : null;
-    }
+    hideResults();
   </script>
 </body>
 </html>
-
